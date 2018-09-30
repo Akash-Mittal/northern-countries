@@ -21,11 +21,11 @@ public class CountryController {
     private CountryService walletClientService;
 
     @GetMapping(API.NORTH_COUNTRIES)
-    public IPResponse get(@RequestParam(value = "ip") String[] ip) throws InterruptedException, ExecutionException {
+    public void get(@RequestParam(value = "ip") String[] ip) throws InterruptedException, ExecutionException {
         logger.info("Total {} Request Recieved for IP's:{} ", ip.length);
         Arrays.stream(ip).forEach(eyep -> logger.info("{}", eyep));
-        CompletableFuture<IPResponse> ipr = walletClientService.execute(ip);
-        CompletableFuture.allOf(ipr).join();
-        return ipr.get();
+        CompletableFuture<IPResponse> ipr = walletClientService.executeTest(ip);
+        logger.info("" + ipr.get());
+
     }
 }

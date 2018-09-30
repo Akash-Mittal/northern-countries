@@ -1,5 +1,8 @@
 package com.api.country;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import org.slf4j.Logger;
@@ -19,10 +22,21 @@ public class CountryService {
     }
 
     @Async
-    public CompletableFuture<IPResponse> execute(final String[] ips) throws InterruptedException {
+    public List<CompletableFuture<IPResponse>> execute(final String[] ips) throws InterruptedException {
         logger.info("Looking up ", ips[0]);
-        String url = String.format("https://ipvigilante.com/json/%s", ips[0]);
-        IPResponse results = restTemplate.getForObject(url, IPResponse.class);
-        return CompletableFuture.completedFuture(results);
+        List<CompletableFuture<IPResponse>> ipfutures = new ArrayList<>();
+        Arrays.stream(ips).forEach(ip -> {
+            String url = String.format("https://ipvigilante.com/json/%s", ips[0]);
+            IPResponse results = restTemplate.getForObject("https://demo7820409.mockable.io/json", IPResponse.class);
+            ipfutures.add(CompletableFuture.completedFuture(results));
+        });
+        return ipfutures;
+    }
+
+    @Async
+    public CompletableFuture<IPResponse> executeTest(final String[] ips) throws InterruptedException {
+        logger.info("Looking up ", ips[0]);
+        IPResponse results = restTemplate.getForObject("https://demo7820409.mockable.io/json", IPResponse.class);
+        return (CompletableFuture.completedFuture(results));
     }
 }
