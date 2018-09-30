@@ -1,7 +1,6 @@
 package com.api.country;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -13,7 +12,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -42,7 +40,7 @@ public class CountryControllerTest {
         northcountries.add("Colombia");
 
         CountryResponse response = new CountryResponse().withNorthcountries(northcountries);
-        when(service.execute(Mockito.any())).thenReturn(response);
+        // when(service.execute(Mockito.any())).thenReturn(response);
         this.mockMvc.perform(get(API.BASE_PATH + API.NORTH_COUNTRIES + "?ip=8.8.8.8&ip=8.8.0.0")).andDo(print())
                 .andExpect(status().isOk()).andExpect(content().string(containsString(new Gson().toJson(response))));
     }
