@@ -43,8 +43,8 @@ public class CountryControllerTest {
 
         CountryResponse response = new CountryResponse().withNorthcountries(northcountries);
         when(service.execute(Mockito.any())).thenReturn(response);
-        this.mockMvc.perform(get(API.BASE_PATH + API.NORTH_COUNTRIES)).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString(new Gson().toJson(response))));
+        this.mockMvc.perform(get(API.BASE_PATH + API.NORTH_COUNTRIES + "?ip=8.8.8.8&ip=8.8.0.0")).andDo(print())
+                .andExpect(status().isOk()).andExpect(content().string(containsString(new Gson().toJson(response))));
     }
 
 }
