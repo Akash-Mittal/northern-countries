@@ -1,6 +1,5 @@
 package com.api.country.controller;
 
-import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 
 import org.slf4j.Logger;
@@ -12,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.country.BASEAPI;
-import com.api.country.service.CountryService;
+import com.api.country.dto.response.CountryResponse;
+import com.api.country.service.AggregatorService;
 
 @RestController
 @RequestMapping(BASEAPI.BASE_PATH)
@@ -20,14 +20,14 @@ public class CountryController {
 	private static final Logger logger = LoggerFactory.getLogger(CountryController.class);
 
 	@Autowired
-	private CountryService walletClientService;
+	private AggregatorService service;
 
 	@GetMapping(BASEAPI.NORTH_COUNTRIES)
-	public void get(@RequestParam(value = "ip") String[] ip) throws InterruptedException, ExecutionException {
+	public CountryResponse get(@RequestParam(value = "ip") String[] ip)
+			throws InterruptedException, ExecutionException {
 		logger.info("Total {} Request Recieved for IP's:{} ", ip.length);
-		Arrays.stream(ip).forEach(eyep -> logger.info("{}", eyep));
-//        CompletableFuture<IPResponse> ipr = walletClientService.executeTest(ip);
-		logger.info("" + ipr.get());
+		return service.aggregate(ip);
 
 	}
+
 }

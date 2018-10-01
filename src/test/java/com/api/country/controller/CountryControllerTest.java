@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.api.country.BASEAPI;
-import com.api.country.dto.CountryResponse;
+import com.api.country.dto.response.CountryResponse;
 import com.api.country.service.CountryService;
 import com.google.gson.Gson;
 
@@ -27,25 +27,25 @@ import com.google.gson.Gson;
 @WebMvcTest
 
 public class CountryControllerTest {
-    @Autowired
-    private MockMvc mockMvc;
-    @MockBean
-    private CountryService service;
+	@Autowired
+	private MockMvc mockMvc;
+	@MockBean
+	private CountryService service;
 
-    @Before
-    public void setUp() throws Exception {
-    }
+	@Before
+	public void setUp() throws Exception {
+	}
 
-    @Test
-    public void testGet() throws Exception {
-        List<String> northcountries = new ArrayList<>();
-        northcountries.add("UAE");
-        northcountries.add("Colombia");
+	@Test
+	public void testGet() throws Exception {
+		List<String> northcountries = new ArrayList<>();
+		northcountries.add("UAE");
+		northcountries.add("Colombia");
 
-        CountryResponse response = new CountryResponse().withNorthcountries(northcountries);
-        // when(service.execute(Mockito.any())).thenReturn(response);
-        this.mockMvc.perform(get(BASEAPI.BASE_PATH + BASEAPI.NORTH_COUNTRIES + "?ip=8.8.8.8&ip=8.8.0.0")).andDo(print())
-                .andExpect(status().isOk()).andExpect(content().string(containsString(new Gson().toJson(response))));
-    }
+		CountryResponse response = new CountryResponse.Builder().northcountries(northcountries).build();
+		// when(service.execute(Mockito.any())).thenReturn(response);
+		this.mockMvc.perform(get(BASEAPI.BASE_PATH + BASEAPI.NORTH_COUNTRIES + "?ip=8.8.8.8&ip=8.8.0.0")).andDo(print())
+				.andExpect(status().isOk()).andExpect(content().string(containsString(new Gson().toJson(response))));
+	}
 
 }

@@ -3,6 +3,10 @@ package com.api.country;
 import java.math.BigDecimal;
 import java.util.function.Predicate;
 
+import org.apache.commons.validator.routines.InetAddressValidator;
+
+import com.api.country.exception.ValidationException;
+
 public interface BASEAPI {
 	String API = "/api";
 	String V1 = "/v1";
@@ -11,11 +15,16 @@ public interface BASEAPI {
 	int MIN_ALLOWED_IPS = 1;
 	int MAX_ALLOWED_IPS = 5;
 	String API_IP_VIGILANTE = "https://ipvigilante.com/json/%s";
-	Predicate<Object> NOT_NULL = val -> val == null;
-	Predicate<String[]> GREATER_THAN_MIN_IPS = i -> i.length >= MIN_ALLOWED_IPS;
-	Predicate<String[]> LESS_THAN_MAX_IPS = i -> i.length <= MAX_ALLOWED_IPS;
-	Predicate<String[]> GREATER_THAN_LESS_THAN = (input) -> GREATER_THAN_MIN_IPS.and(LESS_THAN_MAX_IPS).test(input);
-	Predicate<BigDecimal> IFLATITUDEINNORTHERN = (
-			input) -> (input.compareTo(BigDecimal.ZERO) >= 0 && input.compareTo(BigDecimal.valueOf(90)) <= 0);
-
+	Predicate<Object> CHECK_NOT_NULL_RETURN_TRUE = val -> val != null;
+	Predicate<String[]> CHECK_IF_IPS_IS_GREATER_THAN_0_LESS_THAN_5 = (input) -> {
+		if (CHECK_NOT_NULL_RETURN_TRUE.test(input) && input.length >= MIN_ALLOWED_IPS
+				&& input.length <= MAX_ALLOWED_IPS) {
+			return true;
+		} else {
+			throw new ValidationException("Minimumm: " + MIN_ALLOWED_IPS + " Maximumm:" + MAX_ALLOWED_IPS);
+		}
+	};
+	Predicate<BigDecimal> CHECKIFLATITUDEINNORTHERN = (input) -> (CHECK_NOT_NULL_RETURN_TRUE.test(input)
+			&& input.compareTo(BigDecimal.ZERO) >= 0 && input.compareTo(BigDecimal.valueOf(90)) <= 0);
+	Predicate<String> VALID_IP_ADDRESS = (input) -> InetAddressValidator.getInstance().isValid(input);
 }

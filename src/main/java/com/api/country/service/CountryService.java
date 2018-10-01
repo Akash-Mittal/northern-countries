@@ -1,8 +1,5 @@
 package com.api.country.service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import org.slf4j.Logger;
@@ -20,26 +17,14 @@ public class CountryService {
 	private static final Logger logger = LoggerFactory.getLogger(CountryService.class);
 	private final RestTemplate restTemplate;
 
-	public List<CompletableFuture<IPResponse>> execute(final String[] ips) throws InterruptedException {
-		return this.aggregateAllResponses(ips);
-	}
-
-	private List<CompletableFuture<IPResponse>> aggregateAllResponses(final String[] arrayOfIPAddressRecieved) {
-		final List<CompletableFuture<IPResponse>> ipfutureResponse = new ArrayList<>();
-		Arrays.stream(arrayOfIPAddressRecieved).peek(ip -> logger.info("Looking IP:{} ", ip)).forEach(ip -> {
-			ipfutureResponse.add(callIPDetailsApi(ip));
-		});
-		return ipfutureResponse;
-	}
-
 	@Async
 	public CompletableFuture<IPResponse> callIPDetailsApi(final String ip) {
-		return CompletableFuture
-				.completedFuture(restTemplate.getForObject(String.format(BASEAPI.API_IP_VIGILANTE, ip), IPResponse.class));
+		final String url = String.format(BASEAPI.API_IP_VIGILANTE, ip);
+		logger.info("Calling Host: {}", url);
+		return CompletableFuture.completedFuture(restTemplate.getForObject(url, IPResponse.class));
 	}
 
 	public CountryService(RestTemplateBuilder restTemplateBuilder) {
 		this.restTemplate = restTemplateBuilder.build();
 	}
-
 }
