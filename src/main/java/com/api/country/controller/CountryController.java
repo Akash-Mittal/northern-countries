@@ -10,24 +10,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.country.BASEAPI;
+import com.api.country.BaseService;
 import com.api.country.dto.response.CountryResponse;
 import com.api.country.service.AggregatorService;
 
 @RestController
-@RequestMapping(BASEAPI.BASE_PATH)
+@RequestMapping(BaseService.Params.BASE_PATH)
 public class CountryController {
 	private static final Logger logger = LoggerFactory.getLogger(CountryController.class);
 
 	@Autowired
 	private AggregatorService service;
 
-	@GetMapping(BASEAPI.NORTH_COUNTRIES)
+	@GetMapping(BaseService.Params.NORTH_COUNTRIES)
 	public CountryResponse get(@RequestParam(value = "ip") String[] ip)
 			throws InterruptedException, ExecutionException {
 		logger.info("Total {} Request Recieved for IP's:{} ", ip.length);
-		return service.aggregate(ip);
-
+		return service.aggregate(ip).get();
 	}
 
 }

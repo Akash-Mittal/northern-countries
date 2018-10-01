@@ -9,17 +9,17 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.api.country.BASEAPI;
+import com.api.country.BaseService;
 import com.api.country.json.domain.IPResponse;
 
 @Service
-public class CountryService {
+public class CountryService implements BaseService {
 	private static final Logger logger = LoggerFactory.getLogger(CountryService.class);
 	private final RestTemplate restTemplate;
 
 	@Async
 	public CompletableFuture<IPResponse> callIPDetailsApi(final String ip) {
-		final String url = String.format(BASEAPI.API_IP_VIGILANTE, ip);
+		final String url = String.format(Params.API_IP_VIGILANTE, ip);
 		logger.info("Calling Host: {}", url);
 		return CompletableFuture.completedFuture(restTemplate.getForObject(url, IPResponse.class));
 	}

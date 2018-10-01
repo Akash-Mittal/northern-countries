@@ -10,4 +10,7 @@ public class ErrorResponse extends BaseResponse {
 		super(timestamp, message, httpStatus);
 	}
 
+	public ErrorResponse(String message, HttpStatus httpStatus) {
+		super(new Date(), message, httpStatus);
+	}
 }

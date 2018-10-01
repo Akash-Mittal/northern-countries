@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import com.api.country.exception.ValidationException;
 
-public class APITest implements BASEAPI {
+public class PredicatesTest implements BaseService.Predicates {
 
 	@Test
 	public void testValidIPList() {

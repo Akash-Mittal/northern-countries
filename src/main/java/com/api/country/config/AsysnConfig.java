@@ -23,7 +23,7 @@ public class AsysnConfig implements AsyncConfigurer {
 		executor.setCorePoolSize(5);
 		executor.setMaxPoolSize(10);
 		executor.setQueueCapacity(500);
-		executor.setThreadNamePrefix("northCountry-tname-");
+		executor.setThreadNamePrefix("northCountry-tid-");
 		executor.initialize();
 		return executor;
 	}
