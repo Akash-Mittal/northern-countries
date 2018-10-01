@@ -1,4 +1,4 @@
-package com.api.country;
+package com.api.country.controller;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -18,6 +18,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.api.country.BASEAPI;
+import com.api.country.dto.CountryResponse;
+import com.api.country.service.CountryService;
 import com.google.gson.Gson;
 
 @RunWith(SpringRunner.class)
@@ -41,7 +44,7 @@ public class CountryControllerTest {
 
         CountryResponse response = new CountryResponse().withNorthcountries(northcountries);
         // when(service.execute(Mockito.any())).thenReturn(response);
-        this.mockMvc.perform(get(API.BASE_PATH + API.NORTH_COUNTRIES + "?ip=8.8.8.8&ip=8.8.0.0")).andDo(print())
+        this.mockMvc.perform(get(BASEAPI.BASE_PATH + BASEAPI.NORTH_COUNTRIES + "?ip=8.8.8.8&ip=8.8.0.0")).andDo(print())
                 .andExpect(status().isOk()).andExpect(content().string(containsString(new Gson().toJson(response))));
     }
 

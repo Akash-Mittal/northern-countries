@@ -1,4 +1,4 @@
-package com.api.country;
+package com.api.country.exception;
 
 public class ValidationException extends BusinessException {
 

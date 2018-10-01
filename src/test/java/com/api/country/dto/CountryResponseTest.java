@@ -1,4 +1,4 @@
-package com.api.country;
+package com.api.country.dto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.api.country.dto.CountryResponse;
 import com.google.gson.Gson;
 
 public class CountryResponseTest {

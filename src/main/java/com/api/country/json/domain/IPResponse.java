@@ -1,4 +1,4 @@
-package com.api.country;
+package com.api.country.json.domain;
 
 import java.io.Serializable;
 

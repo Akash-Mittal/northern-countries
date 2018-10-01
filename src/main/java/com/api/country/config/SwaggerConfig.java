@@ -1,4 +1,4 @@
-package com.api.country;
+package com.api.country.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

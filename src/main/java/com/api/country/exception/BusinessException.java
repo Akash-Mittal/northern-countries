@@ -1,4 +1,4 @@
-package com.api.country;
+package com.api.country.exception;
 
 public class BusinessException extends RuntimeException {
     private static final long serialVersionUID = 7045483476273857900L;

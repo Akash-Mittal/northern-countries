@@ -1,4 +1,4 @@
-package com.api.country;
+package com.api.country.json.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
