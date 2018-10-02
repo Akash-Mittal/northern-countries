@@ -1,2 +1,43 @@
 # northern-countries
-Takes IP addresses and returns list of countries from the northern hemisphere
+
+
+## Overview
+
+A REST service that takes IP addresses, checks which countries they are from and if there are any returns list
+of countries from the northern hemisphere. 
+
+* In order to get information about IP addresses API uses IP Vigilante API: https://www.ipvigilante.com/api-developer-docs/.
+
+* Uses latitude value to decide if IP address comes from a country from the northern hemisphere.
+
+## Requirements for the service API:
+
+  * Service should expose one endpoint for a GET request
+	* The endpoint should accept list of IP addresses passed as request parameters
+	* The endpoint should accept at least 1 and maximum 5 ip addresses
+	* If among the passed IP addresses there are addresses from countries from the northern hemisphere, service should return these country names.
+	* Response contains list of unique names (no repetitions of names) sorted alphabetically
+
+Example use case:
+
+### Request:
+
+curl "http://localhost:8888/northcountries?ip=8.8.8.8&ip=8.8.0.0&ip=177.0.0.0&ip=180.0.0.0&ip=190.0.0.0"
+
+Response: 
+`
+{  
+   "northcountries":[  
+      "Colombia",
+      "Japan",
+      "United States"
+   ]
+}
+`
+## Some Points
+
+	* The API can be tested via Swagger : http://localhost:8888/swagger-ui.html#/country-controller
+	* The Test Case Coverage is About 60% With Integration Tests.
+	* There is more scope of Improvement/Re Factoring needed in terms of design(Also some properties should be externalised).
+	* Service can be started using java -jar target\finder-0.0.1-SNAPSHOT.jar from project root
+	* Please make sure you run ` maven clean install -DskipTests`
