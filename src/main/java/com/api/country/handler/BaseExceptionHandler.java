@@ -14,16 +14,17 @@ import com.api.country.exception.ValidationException;
 @ControllerAdvice
 @RestController
 public class BaseExceptionHandler {
-	@ExceptionHandler(ValidationException.class)
-	public final ResponseEntity<ErrorResponse> handleUserNotFoundException(ValidationException ex, WebRequest request) {
-		ErrorResponse errorDetails = new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
-		return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
-	}
+    @ExceptionHandler(ValidationException.class)
+    public final ResponseEntity<ErrorResponse> handleUserNotFoundException(ValidationException ex, WebRequest request) {
+        ErrorResponse errorDetails = new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+    }
 
-	@ExceptionHandler(ServiceException.class)
-	public final ResponseEntity<ErrorResponse> handleUserNotFoundException(ServiceException ex, WebRequest request) {
-		ErrorResponse errorDetails = new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
-		return new ResponseEntity<>(errorDetails, HttpStatus.BAD_GATEWAY);
-	}
+    @ExceptionHandler(ServiceException.class)
+    public final ResponseEntity<ErrorResponse> handleUserNotFoundException(ServiceException ex, WebRequest request) {
+        ErrorResponse errorDetails = new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+        // This Function need to Add more type of HTTP Codes.
+    }
 
 }
