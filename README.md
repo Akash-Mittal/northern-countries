@@ -22,19 +22,19 @@ Example use case:
 
 ### Request:
 
-curl "http://localhost:8888/northcountries?ip=8.8.8.8&ip=8.8.0.0&ip=177.0.0.0&ip=180.0.0.0&ip=190.0.0.0"
+	curl "http://localhost:8888/northcountries?ip=8.8.8.8&ip=8.8.0.0&ip=177.0.0.0&ip=180.0.0.0&ip=190.0.0.0"
 
-Response: 
-`
-{  
-   "northcountries":[  
-      "Colombia",
-      "Japan",
-      "United States"
-   ]
-}
+### Response: 
 
-`
+
+	{  
+	   "northcountries":[  
+	      "Colombia",
+	      "Japan",
+	      "United States"
+	   ]
+	}
+
 ## Accessing the API
 
 Swagger(Heroku):
