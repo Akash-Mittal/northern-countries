@@ -1,5 +1,11 @@
 # northern-countries
 
+[![Build Status](https://travis-ci.org/Akash-Mittal/northern-countries.svg?branch=master)](https://travis-ci.org/Akash-Mittal/northern-countries)
+[![GitHub issues](https://img.shields.io/github/issues/Akash-Mittal/northern-countries.svg)](https://github.com/Akash-Mittal/northern-countries/issues)
+[![GitHub forks](https://img.shields.io/github/forks/Akash-Mittal/northern-countries.svg)](https://github.com/Akash-Mittal/northern-countries/network)
+[![GitHub stars](https://img.shields.io/github/stars/Akash-Mittal/northern-countries.svg)](https://github.com/Akash-Mittal/northern-countries/stargazers)
+[![GitHub license](https://img.shields.io/github/license/Akash-Mittal/northern-countries.svg)](https://github.com/Akash-Mittal/northern-countries/blob/master/LICENSE)
+
 
 ## Overview
 
