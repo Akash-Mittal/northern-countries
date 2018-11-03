@@ -24,15 +24,11 @@
 	* If among the passed IP addresses there are addresses from countries from the northern hemisphere, service should return these country names.
 	* Response contains list of unique names (no repetitions of names) sorted alphabetically
 
-Example use case:
-
 ### Request:
-	
 	
 	curl "http://localhost:8888/northcountries?ip=8.8.8.8&ip=8.8.0.0&ip=177.0.0.0&ip=180.0.0.0&ip=190.0.0.0"
 
 ### Response: 
-
 
 	{  
 	   "northcountries":[  
@@ -70,4 +66,3 @@ https://northern-countries.herokuapp.com/api/v1/northcountries?ip=8.8.8.8
 	* There is more scope of Improvement/Re Factoring needed in terms of design(Also some properties should be externalised).
 	* Service can be started using ` java -jar target\finder-0.0.1-SNAPSHOT.jar from project root `.
 	* Please make sure you run ` maven clean install -DskipTests`.
-	
